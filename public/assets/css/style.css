@@ -1,4 +1,10 @@
-h1, h2{
+h1{
+  font-family: 'Pacifico', cursive;
+  text-align: center;
+}
+
+h2{
+
   font-family: 'Pacifico', cursive;
 
 }
@@ -7,4 +13,11 @@ body, li{
   color: blue;
   font-family: 'Archivo Narrow', sans-serif;
   font-size: 25px;
+
+}
+
+img{
+  height: 250px;
+  display: block;
+  margin: 0 auto;
 }
