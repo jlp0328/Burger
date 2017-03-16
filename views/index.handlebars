@@ -4,18 +4,18 @@
 
 <ul>
   {{#each burger}}
-    {{!-- {{#unless this.x}} --}}
+    {{#unless this.x}}
       <li>
         {{this.burger_name}}
 
-        <form action="/{{this.id}}?_method=PUT" method="POST">
+        <form action="/{{this.id}}?_method=DELETE" method="POST">
           <input type="hidden" name="devoured" value="true">
-          <button type="submit">DEVOURED!</button>
+          <button type="submit">DEVOUR IT!</button>
         </form>
 
-        {{!-- {{> cats/delete-cat}} --}}
+        {{!-- {{> burger/delete-burger}} --}}
       </li>
-    {{!-- {{/unless}} --}}
+    {{/unless}}
   {{/each}}
 </ul>
 

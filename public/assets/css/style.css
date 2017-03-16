@@ -1,0 +1,10 @@
+h1, h2{
+  font-family: 'Pacifico', cursive;
+
+}
+
+body, li{
+  color: blue;
+  font-family: 'Archivo Narrow', sans-serif;
+  font-size: 25px;
+}
