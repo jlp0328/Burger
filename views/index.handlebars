@@ -9,7 +9,7 @@
         {{this.burger_name}}
 
         <form action="/{{this.id}}?_method=PUT" method="POST">
-          <input type="hidden" name="devour" value="true">
+          <input type="hidden" name="devoured" value="true">
           <button type="submit">DEVOURED!</button>
         </form>
 
@@ -24,7 +24,7 @@
 
   <div class="form-group">
     <label for="ca">Burger Name:</label>
-    <input type="text" id="ca" name="name">
+    <input type="text" id="ca" name="burger_name">
   </div>
 
   <button type="submit">Add Burger</button>

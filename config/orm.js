@@ -1,28 +1,77 @@
 var connection = require("../config/connection.js");
 
+function printQuestionMarks(num) {
+  var arr = [];
+
+  for (var i = 0; i < num; i++) {
+    arr.push("?");
+  }
+  return arr.toString();
+}
+
+function objToSql(ob) {
+  var arr = [];
+
+  for (var key in ob) {
+    if (Object.hasOwnProperty.call(ob, key)) {
+      arr.push(key + "=" + ob[key]);
+    }
+  }
+
+  return arr.toString();
+}
+
 var orm = {
-  selectAll: function(callback){
-    var x = "SELECT * FROM burgers";
+  selectAll: function(tableInput,cb){
+    var x = "SELECT * FROM " + tableInput + ";";
 
     connection.query(x, function(err,result){
-        callback(result);
+          if (err) {
+        throw err;
+      }
+        cb(result);
     });
   },
 
-  insertOne: function(burger, callback){
-    var x = "INSERT INTO burgers (burger_name) VALUE (?)";
+  insertOne: function(table, cols, vals, cb){
+    var x = "INSERT INTO " + table;
 
-    connection.query(x,[burger.burger_name],function(err,result){
-        callback(result);
+    x += " (";
+    x += cols.toString();
+    x += " )";
+    x += "VALUES (";
+    x += printQuestionMarks(vals.length);
+    x += ")";
+
+
+    console.log(x);
+
+    connection.query(x, vals,function(err,result){
+    if (err) {
+        throw err;
+      }
+        cb(result);
     });
 
   },
 
-  updateOne: function(burger, callback){
-    var x = "UPDATE burgers SET text=? WHERE id=?";
+  updateOne: function(table, objColVals, condition, cb){
+    var x = "UPDATE " + table;
 
-    connection.query(x, [burger.burger_name, burger.id], function(err,result){
-        callback(result);
+    x += " SET ";
+    x += objToSql(objColVals);
+    x += " WHERE ";
+    x += condition;
+
+    console.log(x);
+
+
+    connection.query(x, function(err,result){
+    if (err) {
+        throw err;
+      }
+
+        cb(result);
     });
 
   }
